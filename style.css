@@ -1,182 +1,245 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+/* TŁO */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #76e96c, #c2a91c);
-    margin: 0;
-    height: 100vh;
+  font-family: "Inter", "Segoe UI", sans-serif;
+  height: 100vh;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+/* DELIKATNE TŁO ANIMOWANE */
+body::before {
+  content: "";
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
+  background-size: 40px 40px;
+  animation: moveBg 20s linear infinite;
+}
+
+@keyframes moveBg {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-200px, -200px);
+  }
 }
 
 /* KARTA */
 .todo {
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    width: 350px;
+  position: relative;
+  z-index: 1;
 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    animation: fadeIn 0.5s ease;
+  width: 380px;
+  padding: 30px;
+
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+
+  color: white;
+
+  animation: fadeIn 0.6s ease;
 }
 
+/* NAGŁÓWEK */
 h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #333;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 /* FORMULARZ */
 form {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 input {
-    flex: 1;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    outline: none;
-    transition: 0.2s;
+  flex: 1;
+  padding: 12px;
+
+  border-radius: 10px;
+  border: none;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+
+  transition: 0.3s;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }
 
 input:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 5px rgba(102,126,234,0.5);
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(1.02);
 }
 
+/* BUTTON */
 button {
-    padding: 10px 14px;
-    border: none;
-    border-radius: 8px;
-    background: #667eea;
-    color: white;
-    cursor: pointer;
-    transition: 0.2s;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: none;
+
+  background: #00c9a7;
+  color: white;
+
+  cursor: pointer;
+  font-weight: bold;
+
+  transition: 0.2s;
 }
 
 button:hover {
-    background: #5a67d8;
-    transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* LISTA */
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
 }
 
+/* ITEM */
 li {
-    background: #f9fafc;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 12px;
 
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
 
-    border: 1px solid #eee;
-    transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  transition: 0.3s;
+
+  animation: slideIn 0.3s ease;
 }
 
 li:hover {
-    background: #f1f3f9;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateX(5px);
 }
 
+/* CHECKBOX CUSTOM */
 li input[type="checkbox"] {
-    transform: scale(1.2);
-    cursor: pointer;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+
+  border-radius: 5px;
+  border: 2px solid white;
+
+  cursor: pointer;
+  position: relative;
 }
 
+li input[type="checkbox"]:checked {
+  background: #00c9a7;
+  border: none;
+}
+
+li input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  left: 3px;
+}
+
+/* TEKST */
 li span {
-    flex: 1;
-    font-size: 14px;
+  flex: 1;
+  font-size: 14px;
 }
 
+/* UKOŃCZONE */
 li.completed span {
-    text-decoration: line-through;
-    color: #aaa;
+  text-decoration: line-through;
+  opacity: 0.6;
 }
 
+/* DELETE BUTTON */
 li button {
-    background: #ff6b6b;
-    padding: 6px 10px;
-    font-size: 12px;
+  background: #ff4d6d;
+  padding: 6px 10px;
+  font-size: 12px;
 }
 
 li button:hover {
-    background: #e63946;
+  background: #ff1e4d;
 }
 
+/* ANIMACJE */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-/* 📱 TELEFONY (do 480px) */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 📱 MOBILE */
 @media (max-width: 480px) {
-    .todo {
-        width: 90%;
-        padding: 20px;
-        border-radius: 12px;
-    }
+  .todo {
+    width: 90%;
+    padding: 20px;
+  }
 
-    h1 {
-        font-size: 20px;
-    }
+  form {
+    flex-direction: column;
+  }
 
-    form {
-        flex-direction: column;
-    }
+  button {
+    width: 100%;
+  }
 
-    button {
-        width: 100%;
-    }
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    li button {
-        align-self: flex-end;
-    }
-}
-
-
-/* 📲 TABLETY (481px – 768px) */
-@media (max-width: 768px) {
-    .todo {
-        width: 80%;
-    }
-}
-
-
-/* 💻 WIĘKSZE EKRANY (769px+) */
-@media (min-width: 769px) {
-    .todo {
-        width: 400px;
-    }
-}
-
-
-/* 🖥️ DUŻE MONITORY (1200px+) */
-@media (min-width: 1200px) {
-    .todo {
-        width: 450px;
-    }
+  li button {
+    align-self: flex-end;
+  }
 }
