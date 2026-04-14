@@ -59,4 +59,14 @@ li {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
+li.completed span {
+    text-decoration: line-through;
+    color: #888;
+}
+

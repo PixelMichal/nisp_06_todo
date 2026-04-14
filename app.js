@@ -9,10 +9,29 @@ form.addEventListener('submit', function(e) {
 
     if (taskText !== '') {
         const li = document.createElement('li');
-        li.textContent = taskText;
+
+        // checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+
+        // tekst zadania
+        const span = document.createElement('span');
+        span.textContent = taskText;
+
+        // reakcja na zaznaczenie
+        checkbox.addEventListener('change', function() {
+            if (checkbox.checked) {
+                li.classList.add('completed');
+            } else {
+                li.classList.remove('completed');
+            }
+        });
+
+        li.appendChild(checkbox);
+        li.appendChild(span);
 
         taskList.appendChild(li);
 
-        input.value = ''; 
+        input.value = '';
     }
 });
