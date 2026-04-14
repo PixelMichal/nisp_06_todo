@@ -18,17 +18,23 @@ form.addEventListener('submit', function(e) {
         const span = document.createElement('span');
         span.textContent = taskText;
 
-        // reakcja na zaznaczenie
+        // przycisk usuń
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Usuń';
+
+        // oznaczanie jako ukończone
         checkbox.addEventListener('change', function() {
-            if (checkbox.checked) {
-                li.classList.add('completed');
-            } else {
-                li.classList.remove('completed');
-            }
+            li.classList.toggle('completed', checkbox.checked);
+        });
+
+        // usuwanie zadania
+        deleteBtn.addEventListener('click', function() {
+            li.remove();
         });
 
         li.appendChild(checkbox);
         li.appendChild(span);
+        li.appendChild(deleteBtn);
 
         taskList.appendChild(li);
 
